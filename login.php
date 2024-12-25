@@ -68,7 +68,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="password" required>
+                        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="password" required oninvalid="setCustomValidity('The password should be between 6-20 and can include a-z A-Z 0-9 @ $ % * ? &')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 <div class="row mt-5 text-center">
@@ -80,39 +80,45 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
                     </div>
                 </div>  
             </form>
-                <?php
-                if(isset($_GET["err"]) && $_GET["err"]==0)
+            <?php
+                if(isset($_GET["err"]))
+                    if($_GET["err"]==0)
                     {
                         ?>
                         <div class="alert alert-success mt-5" role="alert">
-                            You signed in successfully
+                        You logged in successfully
                         </div>
-                        <?php
+                    <?php
                     }
-                else if(isset($_GET["err"]) && $_GET["err"]==1)
-                {
+                    else
+                    {
                     ?>
                         <div class="alert alert-danger mt-5" role="alert">
-                            There is an error in your login
+                    <?php
+                        if($_GET["err"]==1)
+                        {
+                            print("There is an error in your login");
+                        }
+                        else if($_GET["err"]==2)
+                        {
+                            print("The password is'nt correct");
+                        }
+                        else if($_GET["err"]==3)
+                        {
+                            print("User not found");
+                        }
+                        else if($_GET["err"]=="password")
+                        {
+                            print("The password should be between 6-20 and can include a-z A-Z 0-9 @ $ % * ? &");
+                        }
+                        else if($_GET["err"]=="email/mobile")
+                        {
+                            print("The email address or mobile phone are invalid <br>The mobile phone should be like 09*********");
+                        }
+                        ?>
                         </div>
                         <?php
-                }
-                else if(isset($_GET["err"]) && $_GET["err"]==2)
-                {
-                    ?>
-                        <div class="alert alert-danger mt-5" role="alert">
-                            The password is'nt correct
-                        </div>
-                        <?php
-                }
-                else if(isset($_GET["err"]) && $_GET["err"]==3)
-                {
-                    ?>
-                        <div class="alert alert-danger mt-5" role="alert">
-                            User not found
-                        </div>
-                        <?php
-                }
+                    }    
                 ?>
         </div>
       </div>

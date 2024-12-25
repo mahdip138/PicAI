@@ -57,68 +57,99 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
                 <h1 class="mb-3 fw-normal" style="font-size:25px"><b>Sign in</b></h1>
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control form-control-lg" name="fname" id="fname" placeholder="first name" required  title="لطفا مقدار مناسبی وارد کنید">
+                        <input type="text" class="form-control form-control-lg" name="fname" id="fname" placeholder="first name" required oninvalid="setCustomValidity('The first name should be between 2-50 and can include alphabets')" oninput="setCustomValidity('')">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control form-control-lg" name="lname" id="lname" placeholder="last name" required>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <input type="tel" class="form-control form-control-lg" name="mobile" id="mobile" placeholder="phone number" maxlength="11" required>
-                    </div>
-                    <div class="col">
-                        <input type="emil" class="form-control form-control-lg" name="email" id="email" placeholder="email " required>
+                        <input type="text" class="form-control form-control-lg" name="lname" id="lname" placeholder="last name" required oninvalid="setCustomValidity('The last name should be between 2-50 and can include alphabets')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <textarea class="form-control" name="address" id="address" rows="3" placeholder="address" required></textarea>
+                        <input type="tel" class="form-control form-control-lg" name="mobile" id="mobile" placeholder="phone number" maxlength="11" required oninvalid="setCustomValidity('The mobile phone should be like 09*********')" oninput="setCustomValidity('')">
+                    </div>
+                    <div class="col">
+                        <input type="emil" class="form-control form-control-lg" name="email" id="email" placeholder="email " required oninvalid="setCustomValidity('The email address is invalid')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="password" required>
+                        <textarea class="form-control" name="address" id="address" rows="3" placeholder="address" required oninvalid="setCustomValidity('The address should be between 10-120 and can include characters and comma')" oninput="setCustomValidity('')"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="password" required oninvalid="setCustomValidity('The password should be between 6-20 and can include a-z A-Z 0-9 @ $ % * ? &')" oninput="setCustomValidity('')">
                     </div>
                     <div class="col">
-                        <input type="password" class="form-control form-control-lg" name="rpassword" id="rpassword" placeholder=" repeat password " required>
+                        <input type="password" class="form-control form-control-lg" name="rpassword" id="rpassword" placeholder=" repeat password " required oninvalid="setCustomValidity('The password should be between 6-20 and can include a-z A-Z 0-9 @ $ % * ? &')" oninput="setCustomValidity('')">
                     </div>
                 </div>
                 <div class="row mt-5 text-center">
-                    <div class="col">
+                    <div class="col-lg my-2 my-lg-0">
                         <input class="btn btn-success w-25" type="submit" class="form-control form-control-lg">
                     </div>
-                    <div class="col">
+                    <div class="col-lg my-2 my-lg-0">
                         <input class="btn btn-success w-25" type="reset" class="form-control form-control-lg">
                     </div>
                 </div>  
             </form>
                 <?php
-                if(isset($_GET["err"]) && $_GET["err"]==0)
+                if(isset($_GET["err"]))
+                    if($_GET["err"]==0)
                     {
                         ?>
                         <div class="alert alert-success mt-5" role="alert">
-                            You signed in successfully
+                        You signed in successfully
                         </div>
-                        <?php
+                    <?php
                     }
-                else if(isset($_GET["err"]) && $_GET["err"]==1)
-                {
+                    else
+                    {
                     ?>
                         <div class="alert alert-danger mt-5" role="alert">
-                            There is an error in your registration
+                    <?php
+                        if($_GET["err"]==1)
+                        {
+                            print("There is an error in your registration");
+                        }
+                        else if($_GET["err"]==2)
+                        {
+                            print("The repeated password is'nt correct");
+                        }
+                        else if($_GET["err"]==3)
+                        {
+                            print("A user has already registered with this email or phone number");
+                        }
+                        else if($_GET["err"]=="password")
+                        {
+                            print("The password should be between 6-20 and can include a-z A-Z 0-9 @ $ % * ? &");
+                        }
+                        else if($_GET["err"]=="address")
+                        {
+                            print("The address should be between 10-120 and can include characters and comma");
+                        }
+                        else if($_GET["err"]=="email")
+                        {
+                            print("The email address is invalid");
+                        }
+                        else if($_GET["err"]=="mobile")
+                        {
+                            print("The mobile phone should be like 09*********");
+                        }
+                        else if($_GET["err"]=="fname")
+                        {
+                            print("The first name should be between 2-50 and can include alphabets");
+                        }
+                        else if($_GET["err"]=="lname")
+                        {
+                            print("The last name should be between 2-50 and can include alphabets");
+                        }
+                        ?>
                         </div>
                         <?php
-                }
-                else if(isset($_GET["err"]) && $_GET["err"]==2)
-                {
-                    ?>
-                        <div class="alert alert-danger mt-5" role="alert">
-                            The repeated password is'nt correct
-                        </div>
-                        <?php
-                }
+                    }    
                 ?>
+                    
         </div>
       </div>
 

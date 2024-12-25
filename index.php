@@ -45,17 +45,22 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
+
       <img src="assets/img/hero-bg-2.jpg" alt="" class="hero-bg">
 
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-lg-4 order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+            <video class="img-fluid animated rounded" autoplay muted loop playsinline autoplay="" muted="" loop="" playsinline="">
+              <source src="assets/img/text-to-img (1).webm" type="video/webm">
+              <!-- پیام برای مرورگرهایی که از ویدیو پشتیبانی نمی‌کنند -->
+              Your browser does not support the video tag.
+            </video>  
           </div>
 
           <div class="col-lg-6  d-flex flex-column justify-content-center" data-aos="fade-in">
-            <h1>Build Your Landing Page With <span>Bootslander</span></h1>
-            <p>We are team of talented designers making websites with Bootstrap</p>
+            <h1>Turn Your Imagination into Reality with <span>PicAI</span></h1>
+            <p>We are a team of innovators combining AI technology and creativity to generate breathtaking images effortlessly</p>
             <div class="d-flex">
               <a href="#about" class="btn-get-started">Get Started</a>
             </div>
